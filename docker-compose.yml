@@ -18,5 +18,20 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: codewords-app
+    restart: always
+    environment:
+      - PORT=8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - n8n
+
 volumes:
   n8n_data:
